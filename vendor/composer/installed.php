@@ -3,7 +3,7 @@
         'name' => 'administrador/app-salon',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'ffb17560c0b45868c393d9cafd06b6a66a43137b',
+        'reference' => '8d1d65a461db0a5391db290b77c8c229a451f791',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'administrador/app-salon' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'ffb17560c0b45868c393d9cafd06b6a66a43137b',
+            'reference' => '8d1d65a461db0a5391db290b77c8c229a451f791',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
