@@ -62,7 +62,21 @@ class Usuario extends ActiveRecord {
             self::$alertas['error'][] = 'El password debe dontener al menos 6 caracteres';
         }
 
-        // Cambio en el retorno
+        
         return self::$alertas;
+
     }
+
+    //Revisa si el usurario ya existe
+    public function existeUsuario() {
+        $query = "SELECT * FROM " . self::$tabla . " WHERE email = '" . $this->email . "' LIMIT 1";
+        
+        $resultado = self::$db->query($query);
+
+        if ($resultado->num_rows) {
+            self::$alertas['error'][] = 'El Usuario ya esta registrado';
+        }
+       return $resultado;
+    }
+    
 }
