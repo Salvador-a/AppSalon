@@ -26,8 +26,8 @@
 
     <input type="submit" class="boton" value="Iniciar Sesión">
 </form>
+
 <div class="acciones">
     <a href="/crear-cuenta">¿Aún no tienes una cuenta? Crear una </a>
     <a href="/olvide">¿Olvidades tu password?</a>
-
 </div>
