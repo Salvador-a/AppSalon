@@ -38,12 +38,12 @@ class Usuario extends ActiveRecord {
         
         if (!$this->nombre) {
             // Cambio en el acceso a la propiedad
-            self::$alertas['erro'][] = 'El nombre del Cliente es obligatorio';
+            self::$alertas['error'][] = 'El nombre del Cliente es obligatorio';
         }
 
         if (!$this->apellido) {
             // Cambio en el acceso a la propiedad
-            self::$alertas['erro'][] = 'El apellido del Cliente es obligatorio';
+            self::$alertas['error'][] = 'El apellido del Cliente es obligatorio';
         }
 
         // Cambio en el retorno

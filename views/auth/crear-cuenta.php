@@ -1,8 +1,10 @@
 <h1 class="nombre-paguina">Crear Cuenta</h1>
 
-<p class="descripcion-paguina">Llena el siguinte formyualrio para crear una cuneta</p>
+<p class="descripcion-paguina">Llena el siguinte formulario para crear una cuneta</p>
 
-
+<?php 
+    include_once __DIR__ . "/../templates/alertas.php";
+?>
 
 <form class="formualario" method="POST" action="/crear-cuenta">
     <div class="campo">
