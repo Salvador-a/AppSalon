@@ -15,8 +15,12 @@ class LoginController {
         echo "Hola desde logout";
     }
 
-    public static function olvide() {
-        echo "Hola desde olvide";
+    public static function olvide(Router $router) {
+        
+        // Es la rutas del archivo de donde va tener los etilos
+        $router ->render('auth/olvide-password', [
+
+        ]);
     }
 
     public static function recuperar() {
@@ -26,7 +30,7 @@ class LoginController {
     public static function crear(Router $router) {
 
        
-        $router -> render('auth/crear-cuenta', [
+        $router ->render('auth/crear-cuenta', [
 
         ]);
     }
