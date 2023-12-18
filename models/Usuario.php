@@ -17,6 +17,9 @@ class Usuario extends ActiveRecord {
     public $confirmado;
     public $token;
 
+    // Cambio en la definición de la propiedad
+    protected static $alertas = [];
+
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
         $this->nombre = $args['nombre'] ?? '';
@@ -28,5 +31,22 @@ class Usuario extends ActiveRecord {
         $this->confirmado = $args['confirmado'] ?? null;
         $this->token = $args['token'] ?? '';
     }
-    
+
+    // Mensajes de validacion para la creación de una cuenta
+
+    public function validarNuevaCuenta() {
+        
+        if (!$this->nombre) {
+            // Cambio en el acceso a la propiedad
+            self::$alertas['erro'][] = 'El nombre del Cliente es obligatorio';
+        }
+
+        if (!$this->apellido) {
+            // Cambio en el acceso a la propiedad
+            self::$alertas['erro'][] = 'El apellido del Cliente es obligatorio';
+        }
+
+        // Cambio en el retorno
+        return self::$alertas;
+    }
 }
