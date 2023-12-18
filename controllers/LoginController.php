@@ -35,11 +35,15 @@ class LoginController {
 
         // Alertas vacias
         $alertas = [];
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             $usuario->sincronizar($_POST);
             $alertas = $usuario->validarNuevaCuenta();
+
+            // Rivisar que alertas este vacio
+            if (empty($alertas)) {
+                // Verificar que el usuario no este registrado
+            }
         
         }
         
