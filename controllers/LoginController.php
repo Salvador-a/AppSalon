@@ -66,9 +66,31 @@ class LoginController {
             $alertas = $auth->validarEmail();
 
             if (empty($alertas)) {
+                $usuario = Usuario::where('email', $auth->email);
+
+                if($usuario && $usuario->confirmado === "1") {
+                    // Generar un token de uso
+                    $usuario->crearToken();
+                    $usuario->guardar();
+
+                    // Enaviar el emial
+                    
+                    $email = new Email($usuario->email, $usuario->nombre, $usuario->token);
+                    $email->enviarInstrucciones();
+
+                    
+                    // Alerta de exito
+                    Usuario::setAlerta('exito', 'Revisa tu email');
+
+                    
+                } else {
+                    Usuario::setAlerta('error', 'El Usuario no existe o no esta confirmado');
+                    
+                }
                 
             }
         }
+        $alertas = Usuario::getAlertas();
         
         // Es la rutas del archivo de donde va tener los etilos
         $router ->render('auth/olvide-password', [
