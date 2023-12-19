@@ -27,12 +27,12 @@ class Email {
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'pruebasphpmvc@gmail.com';
-        $mail->Password   = 'opwh wsso pogq rojq';
+        $mail->Password   = 'wmii vgjy pjio zsyf';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
         $mail->setFrom('pruebasphpmvc@gmail.com');
-        $mail->addAddress('pruebasphpmvc@gmail.com', 'gmail.com');
+        $mail->addAddress($this->correoUsuario);
         $mail->Subject = 'Confirma tu cuenta';
 
         // Set HTML

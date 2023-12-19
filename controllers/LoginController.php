@@ -68,7 +68,7 @@ class LoginController {
                     header('Location: /mensaje');
                 }
 
-                    // debuguear($usuario);
+                    
                     
               }
             }
