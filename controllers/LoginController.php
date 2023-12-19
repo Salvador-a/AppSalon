@@ -6,6 +6,8 @@ use Classes\Email;
 use Model\Usuario;
 use MVC\Router;
 
+
+
 class LoginController {
     
     public static function login(Router $router) {
@@ -21,7 +23,21 @@ class LoginController {
                 $usuario = Usuario::where('email', $auth->email);
                 if ($usuario) {
                     // Verificar Usuario
-                    if ($usuario->comprobarPasswordAndVerificado($auth->password) ) {
+                    if( $usuario->comprobarPasswordAndVerificado($auth->password) ) {
+                        // Autentificar el usurio
+                        $_SESSION['id'] = $usuario->id;
+                        $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
+                        $_SESSION['email'] = $usuario->email;
+                        $_SESSION['login'] = true;
+
+                        //Redireccionamiento
+
+                        if ($usuario->admin === "1") {
+                            $_SESSION['admin'] = $usuario->admin ?? null;
+                            header('Location: /admin');
+                        }else {
+                            header('Location: /cita');
+                        }
                         
                     }
                 }else {
