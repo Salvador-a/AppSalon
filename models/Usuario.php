@@ -2,6 +2,8 @@
 
 namespace Model;
 
+use Classes\Email;
+
 class Usuario extends ActiveRecord {
     // base de datos
     protected static $tabla = 'usuarios';
@@ -100,8 +102,11 @@ class Usuario extends ActiveRecord {
         $this->token = uniqid();
     }
 
-    public function comprobarPasswordAndVerificado() {
+    public function comprobarPasswordAndVerificado($password) {
 
+        $resultado = password_verify($password, $this->password);
+
+        debuguear($resultado);
         
     }
     
