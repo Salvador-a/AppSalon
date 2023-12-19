@@ -2,7 +2,11 @@
 
 <p class="descripcion-paguina">Inicia sesión con tus datos</p>
 
-<form action="/" method="POST">
+<?php 
+    include_once __DIR__ . "/../templates/alertas.php";
+?>
+
+<form class="formualrio" action="/" method="POST">
 
     <div class="campo">
         <label for="email">Email</label>
@@ -11,6 +15,7 @@
             id="email"
             placeholder="Tu Email"  
             name="email"
+            
         />         
     </div>
 
