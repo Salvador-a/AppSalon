@@ -32,7 +32,7 @@ class Email {
         $mail->Port       = 587;
 
         $mail->setFrom('pruebasphpmvc@gmail.com');
-        $mail->addAddress($this->correoUsuario);
+        $mail->addAddress($this->email);
         $mail->Subject = 'Confirma tu cuenta';
 
         // Set HTML
@@ -48,7 +48,9 @@ class Email {
          $mail->Body = $contenido;
 
          //Enviar el mail
-         $mail->send();
+         if ($this->email) {
+            $mail->send();
+        }
 
     }
 
