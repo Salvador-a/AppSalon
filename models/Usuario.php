@@ -5,7 +5,7 @@ namespace Model;
 class Usuario extends ActiveRecord {
     // base de datos
     protected static $tabla = 'usuarios';
-    protected static $columnasDB = ['id', 'nombre', 'apellido', 'email', 'password', 'telefon', 'admin', 'confirmado', 'token'];
+    protected static $columnasDB = ['id', 'nombre', 'apellido', 'email', 'password', 'telefono', 'admin', 'confirmado', 'token'];
 
     public $id;
     public $nombre;
@@ -23,12 +23,12 @@ class Usuario extends ActiveRecord {
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
         $this->nombre = $args['nombre'] ?? '';
-        $this->apellido = $args['apllido'] ?? '';
+        $this->apellido = $args['apellido'] ?? '';
         $this->email = $args['email'] ?? '';
         $this->password = $args['password'] ?? '';
         $this->telefono = $args['telefono'] ?? '';
-        $this->admin = $args['admin'] ?? null;
-        $this->confirmado = $args['confirmado'] ?? null;
+        $this->admin = $args['admin'] ?? '0';
+        $this->confirmado = $args['confirmado'] ?? '0';
         $this->token = $args['token'] ?? '';
     }
 
@@ -58,8 +58,8 @@ class Usuario extends ActiveRecord {
             self::$alertas['error'][] = 'El password es obligatorio';
         }
         // el metodo strlen obligara al ususrio de crea un possword al numero de cacrteres establecido 
-        if (strlen($this->password) <6) {
-            self::$alertas['error'][] = 'El password debe dontener al menos 6 caracteres';
+        if (strlen($this->password) < 6) {
+            self::$alertas['error'][] = 'El password debe contener al menos 6 caracteres';
         }
 
         
@@ -74,7 +74,7 @@ class Usuario extends ActiveRecord {
         $resultado = self::$db->query($query);
 
         if ($resultado->num_rows) {
-            self::$alertas['error'][] = 'El Usuario ya esta registrado';
+            self::$alertas['error'][] = 'El Usuario ya está registrado';
         }
        return $resultado;
     }
