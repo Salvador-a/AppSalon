@@ -66,7 +66,7 @@ class LoginController {
             $alertas = $auth->validarEmail();
 
             if (empty($alertas)) {
-                $usuario = Usuario::where('email', $auth->email);
+                $usuario = Usuario::where('email', $auth->email); 
 
                 if($usuario && $usuario->confirmado === "1") {
                     // Generar un token de uso
@@ -99,8 +99,11 @@ class LoginController {
         ]);
     }
 
-    public static function recuperar() {
-        echo "Hola desde recuperar";
+    public static function recuperar(Router $router) {
+        
+        $router->render('auth/recuperar-password', [
+
+        ]);
     }
 
     public static function crear(Router $router) {
