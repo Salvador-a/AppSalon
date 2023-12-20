@@ -52,4 +52,16 @@
         <p class="text-center" >Verifica que tu informacion sea correcta</p>
 
     </div>
+
+    <div class="paguinacion">
+        <button
+            id="anterios"
+            class="boton"
+        >&laquo; Anterios</button>
+       
+        <button
+            id="siguinte"
+            class="boton"
+        > Siguinte &raquo;</button>
+    </div>
 </div>
