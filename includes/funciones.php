@@ -15,18 +15,21 @@ function s($html): string
     return $s;
 }
 
-// function isSession(): void
-// {
-//     if (!isset($_SESSION)) {
-//         session_start();
-//     }
-// }
+// Función que revisa que el usuario este autenticado
+function isAuth() : void {
+    if(!isset($_SESSION['login'])) {
+        header('Location: /');
+    }
+}
 
-// function isAuth(): void
-// {
-//     isSession();
+function isAdmin() : void {
+    if(!isset($_SESSION['admin'])) {
+        header('Location: /');
+    }
+}
 
-//     if (!isset($_SESSION['login'])) {
-//         header('Location: /');
-//     }
-// }
+function iniciarSession() {
+    if(!isset($_SESSION)){
+        session_start();
+    }  
+}
