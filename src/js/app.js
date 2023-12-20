@@ -9,7 +9,19 @@ function iniciarApp() {
     tabs(); // Cambia la sección cuando se presionen los tabs
 }
 function mostrarSeccion() {
-    console.log('Mostrar seccion..')
+
+    // Ocutal la sección 1ue tenga la clase de mostrar
+    const seccionAnterior = document.querySelector('.mostrar');
+    
+    if (seccionAnterior) {
+        seccionAnterior.classList.remove('mostrar')        
+    }
+    
+    // Seleccionar la sección con el paso..
+    const pasoSelector =  `#paso-${paso}`
+    const seccion = document.querySelector(pasoSelector);
+    seccion.classList.add('mostrar');
+
 };
 
 function tabs() {
