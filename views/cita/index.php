@@ -53,16 +53,16 @@
 
     </div>
 
-    <div class="paguinacion">
-        <button
-            id="anterios"
+    <div class="paginacion">
+        <button 
+            id="anterior"
             class="boton"
-        >&laquo; Anterios</button>
-       
-        <button
-            id="siguinte"
+        >&laquo; Anterior</button>
+
+        <button 
+            id="siguiente"
             class="boton"
-        > Siguinte &raquo;</button>
+        >Siguiente &raquo;</button>
     </div>
 </div>
 
