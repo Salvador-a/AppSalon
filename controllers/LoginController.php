@@ -100,8 +100,33 @@ class LoginController {
     }
 
     public static function recuperar(Router $router) {
+
+        $alertas = [];
+        $error =false;
+
+
+        $token = s($_GET['token']);
+
+        // Buscar usurio por su token
+        $usuario = Usuario::where('token', $token);
+
+        if (empty($usuario)) {
+            Usuario::setAlerta('error', 'Token No Válido');
+            $error = true;
+        } 
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Leer el nuevo pasword y guardarlo
+            
+        }
         
+
+        // debuguear($usuario);
+
+        $alertas = Usuario::getAlertas();        
         $router->render('auth/recuperar-password', [
+            'alertas' => $alertas,
+            'error' => $error
 
         ]);
     }
