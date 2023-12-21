@@ -2,6 +2,13 @@ let paso = 1;
 const pasoInicial = 1;
 const pasoFinal = 3;
 
+const cita = {
+    nombre: '',
+    fecha: '',
+    hora: '',
+    servicio: []
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     iniciarApp();
 });
@@ -101,12 +108,47 @@ async function consultarAPI() {
         const url = 'http://localhost:3000/api/servicios';
         const resultado = await fetch(url);
         const servicios = await resultado.json();
-        console.log(servicios);
+        mostrarServicios(servicios);
 
         
 
     } catch (error) {
         console.log(error);
     }
+
+}
+
+function mostrarServicios(servicios) {
+    servicios.forEach(servicio => {
+        // Desestructuración del objeto servicio para obtener propiedades como id, nombre y precio
+        const { id, nombre, precio } = servicio;
+    
+        // Crear un elemento de párrafo para el nombre del servicio
+        const nombreServicio = document.createElement('P');
+        nombreServicio.classList.add('nombre-servicio');
+        nombreServicio.textContent = nombre;
+    
+        // Crear un elemento de párrafo para el precio del servicio
+        const precioServicio = document.createElement('P');
+        precioServicio.classList.add('precio-servicio');
+        precioServicio.textContent = `$${precio}`;
+    
+        // Crear un elemento de contenedor (DIV) para el servicio
+        const servicioDiv = document.createElement('DIV');
+        servicioDiv.classList.add('servicio');
+        servicioDiv.dataset.idServicio = id; // Establecer el atributo de datos con el id del servicio
+    
+        // Añadir el elemento del nombre del servicio al contenedor del servicio
+        servicioDiv.appendChild(nombreServicio);
+    
+        // Añadir el elemento del precio del servicio al contenedor del servicio
+        servicioDiv.appendChild(precioServicio);
+    
+         // Agregar el elemento DIV con toda la información al contenedor con ID 'servicios'
+        document.querySelector('#servicios').appendChild(servicioDiv);
+    
+        
+    });
+    
 
 }
