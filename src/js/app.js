@@ -185,13 +185,24 @@ function seleccionarFecha() {
     const inputFecha = document.querySelector('#fecha');
     inputFecha.addEventListener('input', function(e) {
         const dia = new Date(e.target.value).getUTCDay();
-        if ( [6,0].includes(dia) ) {
-            e.target.value = ''
-            console.log('Sábados y Domingos no abrimos');
-        }else {
-
-            cita.fecha = e.target;
+        
+        if ([6, 0].includes(dia)) {
+            e.target.value = '';
+            mostrarAlerta('Fines de semana no permitidos', 'error');
+        } else {
+            cita.fecha = e.target.value;
         }
     });
 }
+
+function mostrarAlerta(mensaje, tipo) {
+    const alerta = document.createElement('DIV');
+    alerta.textContent = mensaje;
+    alerta.classList.add('alerta');
+    alerta.classList.add(tipo);
+
+    const formulario = document.querySelector('.formulaeio');
+    formulario.appendChild(alerta);
+}
+
 
