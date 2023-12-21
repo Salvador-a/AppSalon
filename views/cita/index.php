@@ -18,10 +18,10 @@
         <h2>Tus Datos y Cita</h2>
         <p class="text-center " >Colo tus datos y fecha de tu cita</p>
 
-        <form action="formulario">
+        <form class="formulario">
             <div class="campo">
                 <label for="nombre">Nombre</label>
-                <input 
+                <input
                     id="nombre"
                     type="text"
                     placeholder="Tu Nombre"
@@ -37,6 +37,7 @@
                     type="date"
                 />
             </div>
+
             <div class="campo">
                 <label for="hora">Hora</label>
                 <input 
@@ -44,6 +45,7 @@
                     type="time"
                 />
             </div>
+            <input type="hidden" id="id" value="<?php echo $id; ?>" >
         </form>
 
     </div>
