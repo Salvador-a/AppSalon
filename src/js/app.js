@@ -6,7 +6,7 @@ const cita = {
     nombre: '',
     fecha: '',
     hora: '',
-    servicio: []
+    servicios: []
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -137,6 +137,9 @@ function mostrarServicios(servicios) {
         const servicioDiv = document.createElement('DIV');
         servicioDiv.classList.add('servicio');
         servicioDiv.dataset.idServicio = id; // Establecer el atributo de datos con el id del servicio
+        servicioDiv.onclick = function() {
+            seleccionarServicio(servicio);
+        }
     
         // Añadir el elemento del nombre del servicio al contenedor del servicio
         servicioDiv.appendChild(nombreServicio);
@@ -148,7 +151,13 @@ function mostrarServicios(servicios) {
         document.querySelector('#servicios').appendChild(servicioDiv);
     
         
-    });
-    
+    });   
+}
 
+function seleccionarServicio(servicio) {
+    const { servicios } = cita;
+
+    cita.servicios = [...servicios, servicio];
+
+    console.log(cita);
 }
