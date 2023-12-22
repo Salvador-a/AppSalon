@@ -234,7 +234,9 @@ function mostrarAlerta(mensaje, tipo) {
     setTimeout(() => {
         alerta.remove();   
     }, 3000);
-}
+} 
+
+
 
 
 
