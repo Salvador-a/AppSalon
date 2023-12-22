@@ -196,14 +196,24 @@ function seleccionarFecha() {
 }
 
 function mostrarAlerta(mensaje, tipo) {
+
+    // Previene que se genren más de 1 alerta
+    const alertaPrevia = document.querySelector('.alerta');
+    if(alertaPrevia) return;
+
+    // Scripting para crear la alerta
     const alerta = document.createElement('DIV');
     alerta.textContent = mensaje;
     alerta.classList.add('alerta');
     alerta.classList.add(tipo);
 
     const formulario = document.querySelector('.formulario');
-
     formulario.appendChild(alerta);
+
+    // Eliminar la alerta despus de 3s
+    setTimeout(() => {
+        alerta.remove();   
+    }, 3000);
 }
 
 
