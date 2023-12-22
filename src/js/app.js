@@ -295,19 +295,47 @@ function mostrarResumen() {
 
    const nombreCliente= document.createElement('P');
    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
-  
+
+   // Formaterar la fecha en español
+   const fechaObj = new Date(fecha);
+   const mes = fechaObj.getMonth();
+   fechaObj.setDate(fechaObj.getDate() + 2); // Sumar dos días a la fecha
+
+   const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+   const fechaFormateada = fechaObj.toLocaleDateString('es-MX', opciones);
+     
    const fechaCita= document.createElement('P');
-   fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+   fechaCita.innerHTML = `<span>Fecha:</span> ${fechaFormateada}`;
 
    const horaCita= document.createElement('P');
    horaCita.innerHTML = `<span>Hora:</span> ${hora} Horas`;
+
+   // Boton para Crear una Cita
+   const botonReservar = document.createElement('BUTTON');
+   botonReservar.classList.add('boton');
+   botonReservar.textContent = 'Reservar Cita';
+   botonReservar.onclick = reservarCita;
 
    resumen.appendChild(nombreCliente);
    resumen.appendChild(fechaCita);
    resumen.appendChild(horaCita);
 
-   
+   resumen.appendChild(botonReservar);
+}
 
+async function reservarCita() {
+    const datos = new FormData();
+    datos.append('nombre', 'salvador');
+    const url = 'http://localhost:3000/api/citas';
+
+    const respuesta = await fetch(url, {
+        method: 'POST'
+    });
+
+    console.log(respuesta);
+
+
+    // console.log([...datos]);
 }
 
 
