@@ -190,7 +190,7 @@ function seleccionarFecha() {
         
         if ([6, 0].includes(dia)) {
             e.target.value = '';
-            mostrarAlerta('Fines de semana no permitidos', 'error');
+            mostrarAlerta('Fines de semana no permitidos', 'error', '.formulario');
         } else {
             cita.fecha = e.target.value;
         }
@@ -207,7 +207,7 @@ function seleccionarHora() {
 
         if (hora < 10 || hora > 18) {
             e.target.value = '';
-            mostrarAlerta('Hora No Válida', 'error');
+            mostrarAlerta('Hora No Válida', 'error', '.formulario');
         } else {
             cita.hora = e.target.value;
 
@@ -216,11 +216,13 @@ function seleccionarHora() {
     })
 }
 
-function mostrarAlerta(mensaje, tipo) {
+function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
 
     // Previene que se genren más de 1 alerta
     const alertaPrevia = document.querySelector('.alerta');
-    if(alertaPrevia) return;
+    if(alertaPrevia) {
+        alertaPrevia.remove(); 
+    };
 
     // Scripting para crear la alerta
     const alerta = document.createElement('DIV');
@@ -228,22 +230,27 @@ function mostrarAlerta(mensaje, tipo) {
     alerta.classList.add('alerta');
     alerta.classList.add(tipo);
 
-    const formulario = document.querySelector('.formulario');
-    formulario.appendChild(alerta);
+    const referencia = document.querySelector(elemento);
 
-    // Eliminar la alerta despus de 3s
-    setTimeout(() => {
-        alerta.remove();   
-    }, 3000);
-} 
+    referencia.appendChild(alerta);
+
+    if (desaparece) {
+        // Eliminar la alerta después de 3s
+        setTimeout(() => {
+             alerta.remove();   
+        }, 3000);
+        
+    }
+}
+
 
 function mostrarResumen() {
     const resumen = document.querySelector('.contenido-resumen');
 
-        
+ 
 
-   if (Object.values(cita).includes('') ) {
-        console.log('Hace falta datos');
+   if (Object.values(cita).includes('') || cita.servicios.length === 0) {
+        mostrarAlerta('Fltan datos de Servicios, Fecha u Hora', 'error', '.contenido-resumen', false);
    } else {
         console.log('Todo Bien')
 
