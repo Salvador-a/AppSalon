@@ -306,7 +306,7 @@ function mostrarResumen() {
    // Formaterar la fecha en español
    const fechaObj = new Date(fecha);
    const mes = fechaObj.getMonth();
-   fechaObj.setDate(fechaObj.getDate() + 2); // Sumar dos días a la fecha
+   fechaObj.setDate(fechaObj.getDate() + 1); // Sumar dos días a la fecha
 
    const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
    const fechaFormateada = fechaObj.toLocaleDateString('es-MX', opciones);
