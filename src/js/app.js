@@ -3,6 +3,7 @@ const pasoInicial = 1;
 const pasoFinal = 3;
 
 const cita = {
+    id: '',
     nombre: '',
     fecha: '',
     hora: '',
@@ -21,6 +22,8 @@ function iniciarApp() {
     paginaAnterior();
 
     consultarAPI(); // Consulta la API en en backen de PHP
+
+    idCliente();
     nombreCliente(); // Añade el nombre del cliente al objeto de cita
     seleccionarFecha(); // Añade la fecha de la cita en el objeto
     seleccionarHora(); // añade la hora de la cita en el objeto
@@ -179,6 +182,10 @@ function seleccionarServicio(servicio) {
     // console.log(cita);
 }
 
+function idCliente() {
+    cita.id = document.querySelector('#id').value;
+}
+
 function nombreCliente() {
     cita.nombre = document.querySelector('#nombre').value;
 }
@@ -325,7 +332,7 @@ function mostrarResumen() {
 
 async function reservarCita() {
 
-    const { nombre, fecha, hora, servicios } = cita;
+    const { nombre, fecha, hora, servicios, id } = cita;
 
     const idServicio = servicios.map( servicio => servicio.id );
     // console.log(idServicio);
@@ -333,26 +340,50 @@ async function reservarCita() {
     
 
     const datos = new FormData();
-    datos.append('nombre', nombre);
     datos.append('fecha', fecha);
     datos.append('hora', hora);
+    datos.append('usuarioId', id);
     datos.append('servicios', idServicio);
 
     //   console.log([...datos]);
 
+    try {
+        // Peticion hacia la api
+        const url = 'http://localhost:3000/api/citas';
+
+        const respuesta = await fetch(url, {
+            method: 'POST',
+            body: datos
+        });
+
+        const resultado = await respuesta.json();
+        console.log(resultado.resultado);
+
+        if (resultado.resultado) {
+            Swal.fire({
+                icon: "success",
+                title: "Cita Creada",
+                text: "Tu cita fue creada correctamente",
+                button: 'OK'
+            }).then( () => {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+            })
+    }
+        
+    } catch (error) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Hubo un erro al guardar la cita",
+        });
+        
+    }
+
      
 
-    // Peticion hacia la api
-    const url = 'http://localhost:3000/api/citas';
-
-    const respuesta = await fetch(url, {
-        method: 'POST',
-        body: datos
-    });
-
-    const resultado = await respuesta.json();
-    console.log(resultado);
-
+    
 
    
 }
