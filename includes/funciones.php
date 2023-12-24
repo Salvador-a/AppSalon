@@ -33,3 +33,10 @@ function iniciarSession() {
         session_start();
     }  
 }
+
+function esUltimo(string $actual, string $proximo): bool {
+    if ($actual !== $proximo) {
+        return true;
+    }
+    return false;
+}
