@@ -9,9 +9,13 @@ class AdminControllers {
     public static function index( Router $router ) {
         iniciarSession();
 
-        $fecha = date('Y-m-d');
-        
-        
+            $fecha = $_GET['fecha'] ?? date('Y-m-d');;
+            $fechas = explode('-', $fecha);
+            
+            if (!checkdate($fechas[1], $fechas[2], $fechas[0])) { // Corregir condición y uso de variable
+                header('Location: /404');
+                exit; // Importante terminar la ejecución del script después de una redirección
+            }
 
         //  Consulatar la base de datos
         $consulta = "SELECT citas.id, citas.hora, CONCAT( usuarios.nombre, ' ', usuarios.apellido) as cliente, ";
