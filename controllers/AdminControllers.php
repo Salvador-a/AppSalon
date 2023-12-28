@@ -7,7 +7,10 @@ use MVC\Router;
 
 class AdminControllers {
     public static function index( Router $router ) {
-        iniciarSession();
+        
+            iniciarSession();
+
+            isAdmin();
 
             $fecha = $_GET['fecha'] ?? date('Y-m-d');;
             $fechas = explode('-', $fecha);
