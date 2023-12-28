@@ -11,6 +11,7 @@ class AdminControllers {
 
         $fecha = date('Y-m-d');
         
+        
 
         //  Consulatar la base de datos
         $consulta = "SELECT citas.id, citas.hora, CONCAT( usuarios.nombre, ' ', usuarios.apellido) as cliente, ";
