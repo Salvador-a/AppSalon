@@ -60,3 +60,7 @@ include_once __DIR__ . '/../templates/barra.php';
             ?>
     </ul>
 </div>
+
+<?php
+    $script = "<script src='build/js/buscador.js'></script>"
+?>
