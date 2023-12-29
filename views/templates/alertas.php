@@ -6,6 +6,6 @@
         <?php echo $mensaje; ?>
     </div>
 <?php
-    endforeach;
+        endforeach;
     endforeach;
 ?>
