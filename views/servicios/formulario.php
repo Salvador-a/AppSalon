@@ -15,9 +15,7 @@
         type="number"
         id="precio"
         placeholder="Precio Servicio"
-        name="precio" 
-        value="<?php echo $servicio->precio; ?> "     
-
+        name="precio"
+        value="<?php echo $servicio->precio; ?>"
     />
-
 </div>
