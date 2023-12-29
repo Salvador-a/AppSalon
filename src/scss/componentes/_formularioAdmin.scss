@@ -1,0 +1,28 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.formularioAdmin {
+    .campo {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+
+        label {
+            margin-bottom: 0; /* Ajusta el espacio entre el label y el input */
+        }
+
+        input[type="date"] {
+            width: 100%;
+            border: none;
+            padding: 8px; /* Ajusta el padding según sea necesario */
+            border-radius: 1rem;
+
+            &:disabled {
+                background-color: lighten(#000, 30%);
+                color: #fff;
+                cursor: not-allowed;
+            }
+        }
+    }
+}

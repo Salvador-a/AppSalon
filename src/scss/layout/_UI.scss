@@ -44,3 +44,22 @@
         margin: 0;
     }
 }
+
+.barra-servcio {
+    margin-bottom: v.$separacion;
+
+    @include m.desktop {
+        
+        display: flex;
+        justify-content: center;
+    }
+
+    @include m.tablet {
+        
+        gap: 2rem;
+    }
+
+    .boton {
+        margin: 0 0  1rem 0;
+    }
+}
