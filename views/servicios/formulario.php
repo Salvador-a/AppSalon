@@ -1,4 +1,4 @@
-<h1 class="nombre-paguina">Servicios</h1>
+<h1 class="nombre-paguina">Formualrio</h1>
 
 <p class="descripcion-paguina">Administracion de Servicios</p>
 

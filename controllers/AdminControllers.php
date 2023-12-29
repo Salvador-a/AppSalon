@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace Controllers;
 
@@ -7,20 +7,18 @@ use MVC\Router;
 
 class AdminControllers {
     public static function index( Router $router ) {
-        
-            iniciarSession();
+        iniciarSession();
 
-            isAdmin();
+        isAdmin();
 
-            $fecha = $_GET['fecha'] ?? date('Y-m-d');;
-            $fechas = explode('-', $fecha);
-            
-            if (!checkdate($fechas[1], $fechas[2], $fechas[0])) { // Corregir condición y uso de variable
-                header('Location: /404');
-                exit; // Importante terminar la ejecución del script después de una redirección
-            }
+        $fecha = $_GET['fecha'] ?? date('Y-m-d');
+        $fechas = explode('-', $fecha);
 
-        //  Consulatar la base de datos
+        if( !checkdate( $fechas[1], $fechas[2], $fechas[0]) ) {
+            header('Location: /404');
+        }
+
+        // Consultar la base de datos
         $consulta = "SELECT citas.id, citas.hora, CONCAT( usuarios.nombre, ' ', usuarios.apellido) as cliente, ";
         $consulta .= " usuarios.email, usuarios.telefono, servicios.nombre as servicio, servicios.precio  ";
         $consulta .= " FROM citas  ";
@@ -36,7 +34,7 @@ class AdminControllers {
 
         $router->render('admin/index', [
             'nombre' => $_SESSION['nombre'],
-            'citas' => $citas,
+            'citas' => $citas, 
             'fecha' => $fecha
         ]);
     }
