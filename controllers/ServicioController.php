@@ -24,6 +24,7 @@ class ServicioController {
     public static function crear(Router $router) {
 
         iniciarSession();
+        isAdmin();
 
         $servicio = new Servicio;
         $alertas = [];
@@ -52,6 +53,7 @@ class ServicioController {
     public static function actualizar(Router $router) {
 
         iniciarSession();
+        isAdmin();
  
         if(!is_numeric($_GET['id'])) return;
         $servicio = Servicio::find($_GET['id']);
@@ -74,5 +76,19 @@ class ServicioController {
             'servicio' => $servicio,
             'alertas' => $alertas
         ]);
+    }
+
+    public static function eliminar() {
+
+        iniciarSession();
+        isAdmin();
+
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $servicio = Servicio::find($id);
+            $servicio->eliminar();
+            header('Location: /servicios');
+         }
     }
 } 
