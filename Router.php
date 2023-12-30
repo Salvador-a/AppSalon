@@ -32,7 +32,7 @@ class Router
         // $auth = $_SESSION['login'] ?? null;
 
         // Obtener la URL y el método de la solicitud actual
-        $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+        $currentUrl = strtok($_SERVER['REQUEST_URI'], '?') ?? '/';
         $method = $_SERVER['REQUEST_METHOD'];
 
         // Determinar la función asociada según el método (GET o POST) y la URL
